@@ -3,22 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Semiconductor Companies — US Stock Market Dashboard</title>
+<title>Silicon Sheet — US Semiconductor Stocks Dashboard</title>
+<meta name="description" content="A screener-style dashboard of 98 US-listed semiconductor & related stocks — sortable, filterable by sub-sector, with CSV export. Data via Yahoo Finance.">
+<meta name="theme-color" content="#070b14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b14'/%3E%3Cpath d='M11 11h10v10H11z' fill='none' stroke='%23e8b25c' stroke-width='2'/%3E%3Cpath d='M11 8v3M16 8v3M21 8v3M11 21v3M16 21v3M21 21v3M8 11h3M8 16h3M8 21h3M21 11h3M21 16h3M21 21h3' stroke='%2322d3ee' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
+<div class="tape" aria-hidden="true"><div class="tape-track" id="tapeTrack"></div></div>
+
 <div class="page">
   <header class="masthead">
-    <div>
-      <h1>Semiconductor Companies</h1>
-      <p class="standfirst" id="metaLine">Loading market data…</p>
+    <div class="brand">
+      <div class="chip-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30"><path d="M11 11h10v10H11z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 8v3M16 8v3M21 8v3M11 21v3M16 21v3M21 21v3M8 11h3M8 16h3M8 21h3M21 11h3M21 16h3M21 21h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <p class="eyebrow">US-listed &middot; NYSE / Nasdaq &middot; ADRs included</p>
+        <h1>Silicon <em>Sheet</em></h1>
+        <p class="standfirst" id="metaLine">Loading market data…</p>
+      </div>
     </div>
     <div class="actions">
-      <input type="search" id="searchBox" placeholder="Search company or ticker…" aria-label="Search company or ticker">
-      <button class="btn" id="exportBtn">Export</button>
-      <button class="btn" id="colsBtn">Edit columns</button>
+      <label class="search">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input type="search" id="searchBox" placeholder="Search company or ticker…" aria-label="Search company or ticker">
+      </label>
+      <button class="btn" id="exportBtn" title="Download the current view as CSV">
+        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 12.5h11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Export
+      </button>
+      <button class="btn" id="colsBtn" title="Show / hide columns">Edit columns</button>
     </div>
   </header>
+
+  <section class="stats" aria-label="Market snapshot">
+    <div class="stat"><span class="stat-label">Tracked names</span><strong class="stat-value" id="statCount">—</strong><span class="stat-sub">across 11 sub-sectors</span></div>
+    <div class="stat"><span class="stat-label">Combined market cap</span><strong class="stat-value" id="statCap">—</strong><span class="stat-sub" id="statCapSub">latest prices</span></div>
+    <div class="stat"><span class="stat-label">Median P/E</span><strong class="stat-value" id="statPE">—</strong><span class="stat-sub">trailing twelve months</span></div>
+    <div class="stat"><span class="stat-label">Fastest revenue growth</span><strong class="stat-value accent" id="statGrow">—</strong><span class="stat-sub" id="statGrowSub">latest fiscal year YoY</span></div>
+  </section>
 
   <div class="toolbar">
     <span class="results-line" id="resultsLine">Loading…</span>
@@ -37,8 +65,9 @@
   <footer class="page-foot">
     <p class="meta dim">Price, P/E and market cap are latest values. Total Revenue, Net Profit and Net Margin
       are the latest fiscal year (FY varies by company; a few foreign ADRs show TTM where annual statements
-      aren't published); YoY columns compare against the prior fiscal year. Figures for foreign issuers
+      aren&rsquo;t published); YoY columns compare against the prior fiscal year. Figures for foreign issuers
       converted to USD. Data: Yahoo Finance. For education only — not investment advice.</p>
+    <p class="meta dim foot-row"><span>Built as a zero-dependency static site — deploys anywhere.</span><span id="footStamp"></span></p>
   </footer>
 </div>
 

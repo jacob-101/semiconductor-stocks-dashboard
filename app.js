@@ -282,6 +282,46 @@ async function boot() {
     `Data as of ${data.as_of} · Source: ${data.source} · ${data.count} US-listed semiconductor & related stocks.`;
   renderSectors();
   renderAll();
+  renderStats();
+  renderTape();
+  const stamp = $("footStamp");
+  if (stamp) stamp.textContent = `Snapshot ${data.as_of} · ${data.count} names`;
+}
+
+/* ---------- market snapshot + tape (decorative, failure-safe) ---------- */
+function renderStats() {
+  try {
+    const rows = state.rows.filter((r) => r.market_cap != null);
+    const totalCap = rows.reduce((s, r) => s + r.market_cap, 0);
+    const pes = state.rows.map((r) => r.pe).filter((v) => v != null && v > 0).sort((a, b) => a - b);
+    const medianPE = pes.length ? pes[Math.floor(pes.length / 2)] : null;
+    const growers = state.rows.filter((r) => r.rev_yoy != null).sort((a, b) => b.rev_yoy - a.rev_yoy);
+    const set = (id, txt) => { const el = $(id); if (el) el.textContent = txt; };
+    set("statCount", String(state.rows.length));
+    set("statCap", totalCap ? "$" + fmtBigMoney(totalCap) : DASH);
+    set("statPE", medianPE != null ? medianPE.toFixed(1) + "×" : DASH);
+    if (growers.length) {
+      set("statGrow", `${growers[0].ticker} +${growers[0].rev_yoy.toFixed(1)}%`);
+      set("statGrowSub", `${growers[0].company.slice(0, 28)} · FY revenue YoY`);
+    }
+  } catch (_) { /* stats are decorative — never break the table */ }
+}
+
+function renderTape() {
+  try {
+    const el = $("tapeTrack");
+    if (!el || !state.rows.length) return;
+    const movers = [...state.rows]
+      .filter((r) => r.rev_yoy != null)
+      .sort((a, b) => Math.abs(b.rev_yoy) - Math.abs(a.rev_yoy))
+      .slice(0, 14);
+    const seq = movers.map((r) => {
+      const cls = r.rev_yoy < 0 ? "down" : "up";
+      const sign = r.rev_yoy < 0 ? "" : "+";
+      return `<span><b>${r.ticker}</b><span class="${cls}">${sign}${r.rev_yoy.toFixed(1)}% rev YoY</span></span>`;
+    }).join('<span style="opacity:.35">◆</span>');
+    el.innerHTML = seq + '<span style="opacity:.35">◆</span>' + seq; // doubled for seamless loop
+  } catch (_) { /* decorative */ }
 }
 
 document.addEventListener("DOMContentLoaded", boot);
