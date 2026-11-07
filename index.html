@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semiconductor Companies — US Stock Market Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div>
+      <h1>Semiconductor Companies</h1>
+      <p class="standfirst" id="metaLine">Loading market data…</p>
+    </div>
+    <div class="actions">
+      <input type="search" id="searchBox" placeholder="Search company or ticker…" aria-label="Search company or ticker">
+      <button class="btn" id="exportBtn">Export</button>
+      <button class="btn" id="colsBtn">Edit columns</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <span class="results-line" id="resultsLine">Loading…</span>
+    <div class="sector-filter" id="sectorFilter">
+      <button class="pill active" data-sector="ALL">ALL</button>
+    </div>
+  </div>
+
+  <main class="table-wrap">
+    <table id="stockTable">
+      <thead><tr id="headRow"></tr></thead>
+      <tbody id="bodyRows"></tbody>
+    </table>
+  </main>
+
+  <footer class="page-foot">
+    <p class="meta dim">Price, P/E and market cap are latest values. Total Revenue, Net Profit and Net Margin
+      are the latest fiscal year (FY varies by company; a few foreign ADRs show TTM where annual statements
+      aren't published); YoY columns compare against the prior fiscal year. Figures for foreign issuers
+      converted to USD. Data: Yahoo Finance. For education only — not investment advice.</p>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="colsModal" hidden>
+  <div class="modal" role="dialog" aria-label="Edit columns">
+    <h2>Edit columns</h2>
+    <div class="col-list" id="colList"></div>
+    <div class="modal-actions">
+      <button class="btn" id="colsReset">Reset</button>
+      <button class="btn btn-primary" id="colsDone">Done</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+/* Company profile page — clean flat style */
+
+.crumbs {
+  margin-bottom: 22px;
+}
+
+.crumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.crumbs a:hover { color: var(--accent); }
+
+.co-head { margin-bottom: 26px; }
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.co-head h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+
+.co-head .standfirst {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 760px;
+  margin: 0;
+}
+
+.co-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.meta-item { font-variant-numeric: tabular-nums; }
+.meta-link { color: var(--link); text-decoration: none; font-weight: 500; }
+.meta-link:hover { text-decoration: underline; }
+
+/* ---------- key facts ---------- */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+}
+
+.fact .k-label { margin-bottom: 4px; }
+.fact .k-value.sm { font-size: 15px; line-height: 1.45; }
+
+/* ---------- financial snapshot ---------- */
+.finstrip {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+}
+
+.finstrip h2, .block h2 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.fin-asof { color: var(--faint); font-weight: 400; letter-spacing: 0.3px; text-transform: none; }
+
+.fin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px 14px;
+}
+
+.fin .k-value.xs { font-size: 19px; }
+
+/* ---------- sections ---------- */
+.block {
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 26px;
+  margin-bottom: 26px;
+}
+
+.block:last-child { border-bottom: none; }
+
+.block > p { color: var(--ink); font-size: 14.5px; line-height: 1.75; margin: 0 0 14px; }
+.block > p:last-child { margin-bottom: 0; }
+
+/* ---------- technologies ---------- */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.tech-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.tech-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.tech-head h3 { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: -0.2px; }
+.tech-card p { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin: 0; }
+
+.tech-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 5px;
+  padding: 2px 7px;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+.chip {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
+/* ---------- products ---------- */
+.seg-title { font-size: 14px; font-weight: 600; margin: 20px 0 10px; letter-spacing: -0.1px; }
+.seg-title:first-child { margin-top: 0; }
+
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.prod-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.prod-name { font-weight: 600; font-size: 13.5px; margin-bottom: 5px; }
+.prod-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+/* ---------- fabs + timeline ---------- */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.duo .block { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.fab-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.fab-list li { border-left: 2px solid var(--line); padding-left: 14px; }
+.fab-name { font-weight: 600; font-size: 13.5px; }
+.fab-list p { font-size: 13px; color: var(--muted); margin: 3px 0 0; line-height: 1.55; }
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.timeline li:last-child { border-bottom: none; padding-bottom: 0; }
+.timeline .year { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); }
+
+/* ---------- notes ---------- */
+.note-list { margin: 0; padding-left: 18px; display: grid; gap: 9px; }
+.note-list li { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+.k-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.k-value {
+  font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  margin-top: 5px;
+}
+
+@media (max-width: 1000px) {
+  .tech-grid, .prod-grid, .duo { grid-template-columns: 1fr; }
+}

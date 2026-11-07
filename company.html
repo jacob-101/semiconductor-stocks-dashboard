@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Profile — Semiconductor Dashboard</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="company.css">
+</head>
+<body>
+<div class="page">
+  <nav class="crumbs">
+    <a href="index.html">&larr; All semiconductor companies</a>
+  </nav>
+
+  <header class="co-head" id="coHead">
+    <div class="eyebrow" id="coSector">—</div>
+    <h1 id="coName">Loading…</h1>
+    <p class="standfirst" id="coTagline"></p>
+    <div class="co-meta" id="coMeta"></div>
+  </header>
+
+  <section class="facts" id="facts"></section>
+
+  <section class="finstrip" id="finstrip" hidden>
+    <h2>Financial snapshot <span class="fin-asof" id="finAsof"></span></h2>
+    <div class="fin-grid" id="finGrid"></div>
+  </section>
+
+  <section class="block" id="overviewBlock" hidden>
+    <h2>What the company does</h2>
+    <div id="overview"></div>
+  </section>
+
+  <section class="block" id="techBlock" hidden>
+    <h2>Technologies</h2>
+    <div class="tech-grid" id="techGrid"></div>
+  </section>
+
+  <section class="block" id="productsBlock" hidden>
+    <h2>Products</h2>
+    <div id="productSegs"></div>
+  </section>
+
+  <section class="duo">
+    <div class="block" id="fabsBlock" hidden>
+      <h2>Manufacturing footprint</h2>
+      <ul class="fab-list" id="fabList"></ul>
+    </div>
+    <div class="block" id="timeBlock" hidden>
+      <h2>Milestones</h2>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section class="block" id="notesBlock" hidden>
+    <h2>Worth knowing</h2>
+    <ul class="note-list" id="noteList"></ul>
+  </section>
+
+  <footer class="page-foot">
+    <p class="meta dim" id="srcLine"></p>
+  </footer>
+</div>
+
+<script src="company.js"></script>
+</body>
+</html>
