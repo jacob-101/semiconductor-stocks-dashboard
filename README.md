@@ -4,13 +4,14 @@
 > — sortable, filterable by sub-sector, searchable, with CSV export.
 > Zero build step. Zero dependencies. Deploys anywhere.
 
-[![Live on Netlify](https://img.shields.io/badge/Live-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://semiconductor-stocks-dashboard.netlify.app)
+![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
 [![Data](https://img.shields.io/badge/Data-Yahoo_Finance_·_yfinance-7B61FF?style=flat-square)](https://finance.yahoo.com)
 ![Stocks](https://img.shields.io/badge/Stocks-98-e8b25c?style=flat-square)
 ![Static](https://img.shields.io/badge/Static-HTML_CSS_JS-22d3ee?style=flat-square)
 
-🔗 **Live demo:** https://semiconductor-stocks-dashboard.netlify.app
 📦 **Repo:** https://github.com/jacob-101/semiconductor-stocks-dashboard
+
+Production URL: not published yet. Netlify settings are in `netlify.toml`. After the site is linked and deployed, put the URL Netlify assigns here.
 
 ---
 
@@ -47,16 +48,22 @@ npx serve .
 
 ### Deploy on Netlify
 
-This is a plain static site — no build command, publish directory is `.`:
+Plain static site. No framework, no build, no environment variables.
 
-1. **From Git (recommended):** Netlify → *Add new site → Import an existing project* → connect this repo → Build command: *(empty)*, Publish directory: `.` → Deploy.
-2. **From CLI:**
+| Setting | Value |
+|---|---|
+| Framework | None (static HTML / CSS / JS) |
+| Build command | `true` (no-op in `netlify.toml`; leave the UI field empty) |
+| Publish directory | `.` |
+| Environment variables | none |
+
+`netlify.toml` sets `publish = "."`, skips asset post-processing, and turns Pretty URLs off so `/company.html` is not rewritten onto the dashboard fallback.
+
+1. **From Git:** Netlify → *Add new site → Import an existing project* → connect this repo. The toml overrides the build command and publish directory. Deploy.
+2. **From CLI** (after `npx netlify login` and `npx netlify init` or `npx netlify link`):
    ```bash
-   npm i -g netlify-cli
-   netlify deploy --prod --dir .
+   npx netlify deploy --prod --dir .
    ```
-
-`netlify.toml` is already configured (`publish = "."`, no build).
 
 ---
 
@@ -90,13 +97,15 @@ Pulls live prices + annual fundamentals from **Yahoo Finance (via `yfinance`)** 
 ├── app.js                  # sorting / filtering / search / CSV / stats / tape
 ├── company.html             # technology profile page (pilot: Micron)
 ├── company.css / company.js # profile page assets
+├── favicon.svg             # vector icon (plus ico / png fallbacks)
+├── site.webmanifest        # name, theme color, icon set
 ├── data/
 │   ├── semiconductors.json # baked dataset + as_of timestamp
 │   └── companies/mu.json   # Micron profile content
 ├── scripts/
 │   ├── tickers.py          # 98-ticker universe + sub-sector map
 │   └── fetch_data.py       # Yahoo Finance collector (FY vs prior FY)
-├── netlify.toml            # Netlify: publish ".", no build
+├── netlify.toml            # publish ".", no build, Pretty URLs off
 └── README.md
 ```
 
@@ -117,4 +126,4 @@ Price, P/E and market cap are latest values; revenue, profit and margin are the 
 
 ---
 
-<p align="center">Built with vanilla HTML/CSS/JS · Data: Yahoo Finance · <a href="https://semiconductor-stocks-dashboard.netlify.app">Live demo ↗</a></p>
+<p align="center">Built with vanilla HTML/CSS/JS · Data: Yahoo Finance</p>

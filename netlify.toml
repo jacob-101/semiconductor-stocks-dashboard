@@ -1,7 +1,24 @@
+# Static HTML, CSS, and JavaScript. Nothing to compile.
+# `true` is a no-op so an imported site does not run npm/yarn.
+# Pretty URLs stay off so /company.html is not rewritten to /company
+# and then replaced by the dashboard fallback below.
 [build]
   publish = "."
-  command = ""
+  command = "true"
 
+[build.processing]
+  skip_processing = true
+
+[build.processing.html]
+  pretty_urls = false
+
+# company.html?t=TICKER is the profile route. Query strings pass through.
+[[redirects]]
+  from = "/company"
+  to = "/company.html"
+  status = 200
+
+# Unknown paths serve the dashboard. Existing files are not shadowed.
 [[redirects]]
   from = "/*"
   to = "/index.html"
